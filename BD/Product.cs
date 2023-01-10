@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleApp1
+namespace BD
 {
-    public class User
+    public class Product
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
+        public string Type { get; set; }
+        public double Cost { get; set; }
     }
 }
