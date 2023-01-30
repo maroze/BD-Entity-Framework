@@ -152,3 +152,8 @@ C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net
 C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Students\Details.cshtml.g.cs
 C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Students\Edit.cshtml.g.cs
 C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Students\Index.cshtml.g.cs
+C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Courses\Create.cshtml.g.cs
+C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Courses\Delete.cshtml.g.cs
+C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Courses\Details.cshtml.g.cs
+C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Courses\Edit.cshtml.g.cs
+C:\Users\Пользователь\source\repos\Employees\Employees\obj\Debug\net5.0\Razor\Views\Courses\Index.cshtml.g.cs
