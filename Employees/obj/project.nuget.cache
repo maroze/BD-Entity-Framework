@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wgrvIqx4OusqFh99UowQyYuH0hWPbHL65dJrqq+g+/Itsmt+1f09RUqZpkEUrMePWQMlKnhmN1hqtKCEG1sycA==",
+  "dgSpecHash": "J04kWDRmaCgMv1FcFWjMcTe9OurG4OjFB4Kq56m/ekWVVAvl20ejeN6WhKpCfkB6xnkXmhZVrNiViY/BCzv9OA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Пользователь\\source\\repos\\Employees\\Employees\\Employees.csproj",
+  "projectFilePath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees\\Employees.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Пользователь\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Пользователь\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.0\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.0.nupkg.sha512",

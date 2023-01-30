@@ -20,9 +20,54 @@ namespace Employees.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-            return View(await _context.Courses.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+
+            ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["CreditSortParm"] = sortOrder == "Credit" ? "credit_desc" : "Credit";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            var courses = from c in _context.Courses
+                          select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                courses = courses.Where(c => c.Title.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    courses = courses.OrderByDescending(c => c.Title);
+                    break;
+                case "Credit":
+                    courses = courses.OrderBy(c => c.Credits);
+                    break;
+                case "credit_desc":
+                    courses = courses.OrderByDescending(c => c.Credits);
+                    break;
+                default:
+                    courses = courses.OrderBy(c => c.Title);
+                    break;
+            }
+            int pageSize = 4;
+            return View(await PaginatedList<Course>.CreateAsync(courses.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Courses/Details/5
@@ -32,16 +77,10 @@ namespace Employees.Controllers
             {
                 return NotFound();
             }
-            var student = await _context.Students
-                
-                    
-                
-                .FirstOrDefaultAsync(m => m.ID == id);
+
             var course = await _context.Courses
-                .Include(s => s.Enrollments)
-                .ThenInclude(e => e.Student)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.CourseID == id);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
                 return NotFound();
@@ -125,7 +164,7 @@ namespace Employees.Controllers
 
                     ModelState.AddModelError("", "Не удалось сохранить изменения. ");
                 }
-                
+
             }
             return View(courseToUpdate);
         }
@@ -157,7 +196,8 @@ namespace Employees.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
-        {var course = await _context.Courses.FindAsync(id);
+        {
+            var course = await _context.Courses.FindAsync(id);
             if (course == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -165,7 +205,7 @@ namespace Employees.Controllers
 
             try
             {
-                
+
                 _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
