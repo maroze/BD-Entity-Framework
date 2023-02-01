@@ -79,8 +79,9 @@ namespace Employees.Controllers
             }
 
             var course = await _context.Courses
-            .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.CourseID == id);
+                .Include(c => c.Department)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
                 return NotFound();
@@ -92,6 +93,7 @@ namespace Employees.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
+            PopulateDepartmentsDropDownList();
             return View();
         }
 
@@ -100,22 +102,15 @@ namespace Employees.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Credits")] Course course)
+        public async Task<IActionResult> Create([Bind("CourseID,Credits,DepartmentID,Title")] Course course)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(course);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
+                _context.Add(course);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateException /* ex */)
-            {
-                //Зарегистрировать ошибку (чтобы зарегестрировать исключение в журнал надо раскоммен-ть ex)
-                ModelState.AddModelError("", "Не удалось сохранить изменения. ");
-            }
+            PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
 
@@ -127,11 +122,14 @@ namespace Employees.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses.FindAsync(id);
+            var course = await _context.Courses
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
                 return NotFound();
             }
+            PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
 
@@ -146,29 +144,39 @@ namespace Employees.Controllers
             {
                 return NotFound();
             }
-            var courseToUpdate = await _context.Courses.FirstOrDefaultAsync(s => s.CourseID == id);
+            var courseToUpdate = await _context.Courses
+                    .FirstOrDefaultAsync(c => c.CourseID == id);
 
-            if (await TryUpdateModelAsync<Course>(
-                courseToUpdate,
+            if (await TryUpdateModelAsync<Course>(courseToUpdate,
                 "",
-                s => s.Title, s => s.Credits))
-
+                c => c.Credits, c => c.DepartmentID, c => c.Title))
             {
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
 
                     ModelState.AddModelError("", "Не удалось сохранить изменения. ");
                 }
-
+                return RedirectToAction(nameof(Index));
             }
+            PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
             return View(courseToUpdate);
         }
 
+        /// <summary>
+        ///Метод загружающий сведения о кафедре для раскрывающегося списка.
+        /// </summary>
+        /// <param name="selectedDepartment"></param>
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            var departmentsQuery = from d in _context.Departments
+                                   orderby d.Name
+                                   select d;
+            ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
+        }
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
@@ -178,7 +186,8 @@ namespace Employees.Controllers
             }
 
             var course = await _context.Courses
-                  .AsNoTracking()
+                 .Include(c => c.Department)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
