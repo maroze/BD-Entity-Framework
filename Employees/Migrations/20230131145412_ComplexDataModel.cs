@@ -43,7 +43,7 @@ namespace Employees.Migrations
                 oldNullable: true);
 
             //migrationBuilder.AddColumn<int>(
-            //    name: "departmentID",
+            //    name: "DepartmentID",
             //    table: "Course",
             //    type: "integer",
             //    nullable: false,
@@ -68,12 +68,12 @@ namespace Employees.Migrations
                 name: "CourseAssignment",
                 columns: table => new
                 {
-                    instructorID = table.Column<int>(type: "integer", nullable: false),
+                    InstructorID = table.Column<int>(type: "integer", nullable: false),
                     CourseID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseAssignment", x => new { x.CourseID, x.instructorID });
+                    table.PrimaryKey("PK_CourseAssignment", x => new { x.CourseID, x.InstructorID });
                     table.ForeignKey(
                         name: "FK_CourseAssignment_Course_CourseID",
                         column: x => x.CourseID,
@@ -81,97 +81,96 @@ namespace Employees.Migrations
                         principalColumn: "CourseID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseAssignment_Instructor_instructorID",
-                        column: x => x.instructorID,
+                        name: "FK_CourseAssignment_Instructor_InstructorID",
+                        column: x => x.InstructorID,
                         principalTable: "Instructor",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "department",
+                name: "Department",
                 columns: table => new
                 {
-                    departmentID = table.Column<int>(type: "integer", nullable: false)
+                    DepartmentID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    budget = table.Column<decimal>(type: "money", nullable: false),
-                    startdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    instructorID = table.Column<int>(type: "integer", nullable: true)
+                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    Budget = table.Column<decimal>(type: "money", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    InstructorID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_department", x => x.departmentID);
+                    table.PrimaryKey("PK_Department", x => x.DepartmentID);
                     table.ForeignKey(
-                        name: "FK_department_Instructor_instructorID",
-                        column: x => x.instructorID,
+                        name: "FK_Department_Instructor_InstructorID",
+                        column: x => x.InstructorID,
                         principalTable: "Instructor",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
-            migrationBuilder.Sql("INSERT INTO department (Name, Budget, StartDate) VALUES ('Temp', 0.00, NOW())");
-            // Default value for FK points to department created above, with
-            // defaultValue changed to 1 in following AddColumn statement.
+           
 
             migrationBuilder.AddColumn<int>(
-                name: "departmentID",
+                name: "DepartmentID",
                 table: "Course",
+                type: "integer", 
                 nullable: false,
-                defaultValue: 1);
+                defaultValue: 0);
 
             migrationBuilder.CreateTable(
                 name: "OfficeAssignment",
                 columns: table => new
                 {
-                    instructorID = table.Column<int>(type: "integer", nullable: false),
+                    InstructorID = table.Column<int>(type: "integer", nullable: false),
                     Location = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OfficeAssignment", x => x.instructorID);
+                    table.PrimaryKey("PK_OfficeAssignment", x => x.InstructorID);
                     table.ForeignKey(
-                        name: "FK_OfficeAssignment_Instructor_instructorID",
-                        column: x => x.instructorID,
+                        name: "FK_OfficeAssignment_Instructor_InstructorID",
+                        column: x => x.InstructorID,
                         principalTable: "Instructor",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_departmentID",
+                name: "IX_Course_DepartmentID",
                 table: "Course",
-                column: "departmentID");
+                column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseAssignment_instructorID",
+                name: "IX_CourseAssignment_InstructorID",
                 table: "CourseAssignment",
-                column: "instructorID");
+                column: "InstructorID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_department_instructorID",
-                table: "department",
-                column: "instructorID");
+                name: "IX_Department_InstructorID",
+                table: "Department",
+                column: "InstructorID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Course_department_departmentID",
+                name: "FK_Course_Department_DepartmentID",
                 table: "Course",
-                column: "departmentID",
-                principalTable: "department",
-                principalColumn: "departmentID",
+                column: "DepartmentID",
+                principalTable: "Department",
+                principalColumn: "DepartmentID",
                 onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Course_department_departmentID",
+                name: "FK_Course_Department_DepartmentID",
                 table: "Course");
 
             migrationBuilder.DropTable(
                 name: "CourseAssignment");
 
             migrationBuilder.DropTable(
-                name: "department");
+                name: "Department");
 
             migrationBuilder.DropTable(
                 name: "OfficeAssignment");
@@ -180,11 +179,11 @@ namespace Employees.Migrations
                 name: "Instructor");
 
             migrationBuilder.DropIndex(
-                name: "IX_Course_departmentID",
+                name: "IX_Course_DepartmentID",
                 table: "Course");
 
             migrationBuilder.DropColumn(
-                name: "departmentID",
+                name: "DepartmentID",
                 table: "Course");
 
             migrationBuilder.AlterColumn<string>(

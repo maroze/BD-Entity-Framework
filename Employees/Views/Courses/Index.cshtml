@@ -1,10 +1,10 @@
 ﻿@model PaginatedList<Employees.Models.Course>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Courses";
 }
 
-<h1>Index</h1>
+<h1>Courses</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -22,10 +22,16 @@
     <thead>
         <tr>
             <th>
+                Number
+            </th>
+            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Title</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["CreditSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Credits</a>
+            </th>
+            <th>
+              Department
             </th>
             <th></th>
         </tr>
@@ -33,19 +39,25 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Credits)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

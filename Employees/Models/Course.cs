@@ -18,7 +18,7 @@ namespace Employees.Models
 
         [Range(0, 5)]
         public int Credits { get; set; }
-
+  //      [Column("departmentID")]
         public int DepartmentID { get; set; }
 
         public Department Department { get; set; }

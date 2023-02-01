@@ -66,7 +66,7 @@ namespace Employees.Controllers
                     break;
             }
             int pageSize = 4;
-            return View(await PaginatedList<Course>.CreateAsync(courses.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<Course>.CreateAsync(courses.Include(c => c.Department).AsNoTracking(), pageNumber ?? 1, pageSize));
 
         }
 
