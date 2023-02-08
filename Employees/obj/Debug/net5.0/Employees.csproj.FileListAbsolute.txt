@@ -322,3 +322,7 @@ C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\obj
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\obj\Debug\net5.0\Razor\Views\Instructors\Details.cshtml.g.cs
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\obj\Debug\net5.0\Razor\Views\Instructors\Edit.cshtml.g.cs
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\obj\Debug\net5.0\Razor\Views\Instructors\Index.cshtml.g.cs
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\bin\Debug\net5.0\Employees.Buissnes.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\bin\Debug\net5.0\Employees.Data.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\bin\Debug\net5.0\Employees.Buissnes.pdb
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees\bin\Debug\net5.0\Employees.Data.pdb
