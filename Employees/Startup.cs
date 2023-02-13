@@ -10,6 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Employees.Data.Repository.Implementations;
+using Employees.Data.Repository;
+using Employees.Services;
+using Employees.Services.Services;
+using Employees.Services.Services.Implementations;
 
 namespace Employees
 {
@@ -22,16 +27,22 @@ namespace Employees
 
         public IConfiguration Configuration { get; }
 
-       
+        // Используйте этот метод для добавления сервисов 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddTransient<ICourseService, CourseService>();
+
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddTransient<IStudentService, StudentService>();
+
             services.AddDbContext<SchoolContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             //предоставляет полезные сведения об ошибках в среде разработки
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
         }
-
+        // Используйте этот метод для настройки запросов HTTP
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

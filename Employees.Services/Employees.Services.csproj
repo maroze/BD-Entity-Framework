@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employees.Common\Employees.Common.csproj" />
+    <ProjectReference Include="..\Employees.Data\Employees.Data.csproj" />
+  </ItemGroup>
+
+</Project>

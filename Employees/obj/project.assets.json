@@ -2053,26 +2053,21 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Employees.Buissnes/1.0.0": {
+      "Employees.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Employees.Data": "1.0.0",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
-        },
         "compile": {
-          "bin/placeholder/Employees.Buissnes.dll": {}
+          "bin/placeholder/Employees.Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Employees.Buissnes.dll": {}
+          "bin/placeholder/Employees.Common.dll": {}
         }
       },
       "Employees.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Employees.Common": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
@@ -2082,6 +2077,37 @@
         },
         "runtime": {
           "bin/placeholder/Employees.Data.dll": {}
+        }
+      },
+      "Employees.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Employees.Common": "1.0.0",
+          "Employees.Services": "1.0.0",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Employees.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Employees.Logic.dll": {}
+        }
+      },
+      "Employees.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Employees.Common": "1.0.0",
+          "Employees.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Employees.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Employees.Services.dll": {}
         }
       }
     }
@@ -7260,20 +7286,32 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Employees.Buissnes/1.0.0": {
+    "Employees.Common/1.0.0": {
       "type": "project",
-      "path": "../ES.Data.Models/Employees.Buissnes.csproj",
-      "msbuildProject": "../ES.Data.Models/Employees.Buissnes.csproj"
+      "path": "../Employees.Common/Employees.Common.csproj",
+      "msbuildProject": "../Employees.Common/Employees.Common.csproj"
     },
     "Employees.Data/1.0.0": {
       "type": "project",
-      "path": "../Employees.Domain.Core/Employees.Data.csproj",
-      "msbuildProject": "../Employees.Domain.Core/Employees.Data.csproj"
+      "path": "../Employees.Data/Employees.Data.csproj",
+      "msbuildProject": "../Employees.Data/Employees.Data.csproj"
+    },
+    "Employees.Logic/1.0.0": {
+      "type": "project",
+      "path": "../Employees.Logic/Employees.Logic.csproj",
+      "msbuildProject": "../Employees.Logic/Employees.Logic.csproj"
+    },
+    "Employees.Services/1.0.0": {
+      "type": "project",
+      "path": "../Employees.Services/Employees.Services.csproj",
+      "msbuildProject": "../Employees.Services/Employees.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Employees.Buissnes >= 1.0.0",
+      "Employees.Common >= 1.0.0",
+      "Employees.Logic >= 1.0.0",
+      "Employees.Services >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
@@ -7308,8 +7346,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\ES.Data.Models\\Employees.Buissnes.csproj": {
-              "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\ES.Data.Models\\Employees.Buissnes.csproj"
+            "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Common\\Employees.Common.csproj": {
+              "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Common\\Employees.Common.csproj"
+            },
+            "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Logic\\Employees.Logic.csproj": {
+              "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Logic\\Employees.Logic.csproj"
+            },
+            "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Services\\Employees.Services.csproj": {
+              "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Services\\Employees.Services.csproj"
             }
           }
         }
