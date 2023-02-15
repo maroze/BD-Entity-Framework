@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Employees.Data;
-using Employees.Models;
-using Employees.Models.SchoolViewModels;
+using Employees.Entities;
+using Employees.Entities.SchoolViewModels;
 
 namespace Employees.Controllers
 {

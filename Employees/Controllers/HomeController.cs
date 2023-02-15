@@ -1,4 +1,4 @@
-﻿using Employees.Models;
+﻿using Employees.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Employees.Models.SchoolViewModels;
+using Employees.Entities.SchoolViewModels;
 using Employees.Data;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,0 +1,5 @@
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Logic\obj\Debug\net5.0\Employees.Logic.csproj.AssemblyReference.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Logic\obj\Debug\net5.0\Employees.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Logic\obj\Debug\net5.0\Employees.Logic.AssemblyInfoInputs.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Logic\obj\Debug\net5.0\Employees.Logic.AssemblyInfo.cs
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Logic\obj\Debug\net5.0\Employees.Logic.csproj.CoreCompileInputs.cache

@@ -1,6 +1,6 @@
 using System;
 
-namespace Employees.Models
+namespace Employees.Entities
 {
     public class ErrorViewModel
     {
