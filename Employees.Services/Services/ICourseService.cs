@@ -14,34 +14,34 @@ namespace Employees.Services
         /// Возвращает все курсы из БД
         /// </summary>
         /// <returns></returns>
-        IEnumerable<CourseModel> GetAllCourses();
+        Task<IEnumerable<CourseModel>> GetAll();
 
         /// <summary>
         /// Возвращает курс по id из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
-        CourseModel GetCourse(int courseId);
+        Task<CourseModel> Get(int courseId);
 
         /// <summary>
         /// Создание курса в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        CourseModel AddCourse(CourseModel course);
+        Task<CourseModel> Add(CourseModel course);
 
         /// <summary>
         /// Обновление курса в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        Task<CourseModel> UpdateCourse(CourseModel course);
+        Task<CourseModel> Update(CourseModel course);
 
         /// <summary>
         /// Удаление курса из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
-        CourseModel DeleteCourse(int courseId);
+        Task<CourseModel> Delete(int courseId);
     }
 }

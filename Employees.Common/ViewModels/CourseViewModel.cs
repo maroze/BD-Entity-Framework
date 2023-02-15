@@ -12,11 +12,5 @@ namespace Employees.Common.ViewModels
         public int Credits { get; set; }
 
         public int DepartmentID { get; set; }
-
-        public DepartmentViewModel Department { get; set; }
-
-        public ICollection<EnrollmentViewModel> Enrollments { get; set; }
-
-        public ICollection<CourseAssignmentViewModel> CourseAssignments { get; set; }
     }
 }

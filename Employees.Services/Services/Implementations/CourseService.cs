@@ -16,11 +16,11 @@ namespace Employees.Services
             this._courseRepository = _courseRepository;
         }
 
-        public IEnumerable<CourseModel> GetAllCourses()
+        public async Task<IEnumerable<CourseModel>> GetAll()
         {
-            var course_list = _courseRepository.GetCourses();
-            IEnumerable<CourseModel> result = new IEnumerable<CourseModel>();
-
+           
+            List<CourseModel> result = new List<CourseModel>();
+             var course_list = await _courseRepository.GetCourses();
             foreach (var c in course_list)
             {
 
@@ -30,27 +30,26 @@ namespace Employees.Services
             return result;
         }
 
-        public CourseModel AddCourse(CourseModel course)
+        public async Task<CourseModel> Add(CourseModel course)
         {
-            var result = _courseRepository.AddCourse(course);
+            var result = await _courseRepository.AddCourse(course);
             return result;
         }
 
-        public CourseModel DeleteCourse(int courseId)
+        public async Task<CourseModel> Delete(int courseId)
         {
-            var result = _courseRepository.DeleteCourse(courseId);
-            return result;
+           return await _courseRepository.DeleteCourse(courseId);
         }
 
-        public async Task<CourseModel> UpdateCourse(CourseModel course)
+        public async Task<CourseModel> Update(CourseModel course)
         {
             var result = await _courseRepository.UpdateCourse(course);
             return result;
         }
 
-        public CourseModel GetCourse(int courseId)
+        public async Task<CourseModel> Get(int courseId)
         {
-            object result = _courseRepository.GetCourse(courseId);
+            var result = await _courseRepository.GetCourse(courseId);
             return result;
         }
 

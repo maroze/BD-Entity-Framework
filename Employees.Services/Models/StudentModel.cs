@@ -1,4 +1,5 @@
-﻿using Employees.Data.Entities;
+﻿using Employees.Common.ViewModels;
+using Employees.Data.Entities;
 using Employees.Entities;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,42 @@ namespace Employees.Services.Models
                 EnrollmentDate = model.EnrollmentDate,
                 Enrollments = model.Enrollments
 
+            };
+        }
+
+        public static implicit operator StudentViewModel(StudentModel model)
+        {
+            if (model == null)
+            {
+
+                return null;
+
+            }
+            else return new StudentViewModel
+            {
+
+                ID = model.ID,
+                LastName = model.LastName,
+                FirstMidName = model.FirstMidName,
+                EnrollmentDate = model.EnrollmentDate
+            };
+        }
+
+        public static implicit operator StudentModel(StudentViewModel model)
+        {
+            if (model == null)
+            {
+
+                return null;
+
+            }
+            else return new StudentModel
+            {
+
+                ID = model.ID,
+                LastName = model.LastName,
+                FirstMidName = model.FirstMidName,
+                EnrollmentDate = model.EnrollmentDate
             };
         }
     }

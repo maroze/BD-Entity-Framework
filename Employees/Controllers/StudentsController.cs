@@ -2,6 +2,8 @@
 using Employees.Entities;
 using Employees.Services.Models;
 using Employees.Services.Services;
+using Employees.Common.ViewModels;
+using Employees.Logic.Logics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,9 +15,11 @@ namespace Employees.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentService _studentService;
-        public StudentsController(IStudentService _studentService)
+        private readonly IStudentLogic _studentLogic;
+        public StudentsController(IStudentService _studentService, IStudentLogic _studentLogic)
         {
             this._studentService = _studentService;
+            this._studentLogic = _studentLogic;
         }
 
         /// <summary>
@@ -29,7 +33,7 @@ namespace Employees.Controllers
         {
             try
             {
-                return Ok(_studentService.GetStudents());
+                return Ok(_studentLogic.GetAllStudents());
             }
             catch (Exception e)
             {
@@ -44,13 +48,13 @@ namespace Employees.Controllers
         /// <param name="student"></param>
         /// <returns></returns>
         [HttpPost("AddCourse")]
-        public IActionResult Add([FromBody] StudentModel student)
+        public IActionResult Add([FromBody] StudentViewModel student)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var createdStudent = _studentService.AddStudent(student);
+                var createdStudent = _studentLogic.AddStudent(student);
 
                 return Created($"/api/course/{createdStudent}", createdStudent);
             }
@@ -67,13 +71,13 @@ namespace Employees.Controllers
         /// <param name="student"></param>
         /// <returns></returns>
         [HttpPut("UpdateStudent")]
-        public IActionResult Update([FromBody] StudentModel student)
+        public IActionResult Update([FromBody] StudentViewModel student)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var updatedStudent = _studentService.UpdateStudent(student);
+                var updatedStudent = _studentLogic.UpdateStudent(student);
 
                 return Ok(updatedStudent);
             }
@@ -94,7 +98,7 @@ namespace Employees.Controllers
         {
             try
             {
-                _studentService.DeleteStudent(studentId);
+                _studentLogic.DeleteStudent(studentId);
 
                 return NoContent();
             }

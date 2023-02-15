@@ -16,25 +16,25 @@ namespace Employees.Services.Services.Implementations
             this._studentRepository = _studentRepository;
         }
 
-        public StudentModel AddStudent(StudentModel student)
+        public StudentModel Add(StudentModel student)
         {
             var result = _studentRepository.AddStudent(student);
             return result;
         }
 
-        public StudentModel DeleteStudent(int studentId)
+        public StudentModel Delete(int studentId)
         {
             var result = _studentRepository.DeleteStudent(studentId);
             return result;
         }
 
-        public StudentModel GetStudent(int studentId)
+        public StudentModel Get(int studentId)
         {
             object result = _studentRepository.GetStudent(studentId);
             return result;
         }
 
-        public IEnumerable<StudentModel> GetStudents()
+        public IEnumerable<StudentModel> GetAll()
         {
             var student_list = _studentRepository.GetStudents();
             IEnumerable<StudentModel> result = new IEnumerable<StudentModel>();
@@ -48,7 +48,7 @@ namespace Employees.Services.Services.Implementations
             return result;
         }
 
-        public Task<StudentModel> UpdateStudent(StudentModel student)
+        public Task<StudentModel> Update(StudentModel student)
         {
             var result = _studentRepository.UpdateStudent(student);
             return result;

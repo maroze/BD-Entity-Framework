@@ -43,7 +43,7 @@ namespace Employees.Data.Entities
             }
         }
 
-        //Оющие сведения
+        //Общие сведения о обучении
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

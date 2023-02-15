@@ -9,24 +9,28 @@ using Employees.Data;
 using Employees.Entities;
 using Employees.Services;
 using Employees.Services.Models;
+using Employees.Logic.Logics;
+using Employees.Common.ViewModels;
 
 namespace Employees.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly ICourseService _courseService;
+        private readonly ICourseLogic _courseLogic;
 
-        public CoursesController(ICourseService courseService)
+        public CoursesController(ICourseService courseService, ICourseLogic courseLogic)
         {
             _courseService = courseService;
+            _courseLogic = courseLogic;
         }
 
         [HttpGet("GetCourses")]
-        public IActionResult Get()
+        public IActionResult GetCourses()
         {
             try
             {
-                return Ok(_courseService.GetAllCourses());
+                return Ok(_courseLogic.GetAllCourses());
             }
             catch (Exception e)
             {
@@ -35,13 +39,13 @@ namespace Employees.Controllers
         }
 
         [HttpPost("AddCourse")]
-        public IActionResult Add([FromBody] CourseModel course)
+        public IActionResult AddCourse([FromBody] CourseViewModel course)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var createdCourse = _courseService.AddCourse(course);
+                var createdCourse = _courseLogic.AddCourse(course);
 
                 return Created($"/api/course/{createdCourse}", createdCourse);
             }
@@ -52,13 +56,13 @@ namespace Employees.Controllers
         }
 
         [HttpPut("UpdateCourse")]
-        public IActionResult Update([FromBody] CourseModel course)
+        public IActionResult UpdateCourse([FromBody] CourseViewModel course)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var updatedCourse = _courseService.UpdateCourse(course);
+                var updatedCourse = _courseLogic.UpdateCourse(course);
 
                 return Ok(updatedCourse);
             }
@@ -69,11 +73,11 @@ namespace Employees.Controllers
         }
 
         [HttpDelete("DeleteCourse")]
-        public IActionResult Delete( [FromRoute] int courseId)
+        public IActionResult DeleteCourse( [FromRoute] int courseId)
         {
             try
             {
-                _courseService.DeleteCourse(courseId);
+                _courseLogic.DeleteCourse(courseId);
 
                 return NoContent();
             }

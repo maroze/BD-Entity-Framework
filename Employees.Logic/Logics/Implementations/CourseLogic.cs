@@ -17,26 +17,35 @@ namespace Employees.Logic.Logics.Implementations
         {
             this._courseService = _courseService;
         }
-        public CourseModel AddCourse(CourseViewModel course)
+        public async Task<CourseModel> AddCourse(CourseViewModel course)
         {
             CourseModel model = course;
 
-            return _courseService.AddCourse(model);
+            return await _courseService.Add(model);
         }
 
-        public IEnumerable<CourseViewModel> GetAllCourses()
+        public async Task<CourseModel> DeleteCourse(int courseId)
         {
-            throw new NotImplementedException();
+            CourseModel model = await _courseService.Delete(courseId);
+            return model;
         }
 
-        public CourseViewModel GetCourse(int courseId)
-        {
-            throw new NotImplementedException();
+        public async Task<IEnumerable<CourseViewModel>> GetAllCourses()
+        { 
+            var courses = await _courseService.GetAll();
+            return (IEnumerable<CourseViewModel>)courses;
         }
 
-        public Task<CourseModel> UpdateCourse(CourseViewModel course)
+        public async Task<CourseViewModel> GetCourse(int courseId)
         {
-            throw new NotImplementedException();
+            CourseModel model = await _courseService.Get(courseId);
+            return model;
+        }
+
+        public async Task<CourseModel> UpdateCourse(CourseViewModel course)
+        {
+            CourseModel model = await _courseService.Update(course);
+            return model;
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Employees.Data.Repository.Implementations
             return null;
         }
 
-        public async void DeleteStudent(int studentId)
+        public async Task<StudentEntityModel> DeleteStudent(int studentId)
         {
             var result = await _studentContext.Students
                  .AsNoTracking()
@@ -66,7 +66,9 @@ namespace Employees.Data.Repository.Implementations
             {
                 _studentContext.Students.Remove(result);
                 await _studentContext.SaveChangesAsync();
+                return result;
             }
+            return null;
         }
 
     }

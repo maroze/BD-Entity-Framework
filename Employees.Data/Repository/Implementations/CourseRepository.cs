@@ -55,7 +55,7 @@ namespace Employees.Data.Repository.Implementations
             return null;
         }
 
-        public async void DeleteCourse(int courseId)
+        public async Task<CourseEntityModel> DeleteCourse(int courseId)
         {
             var result = await _courseContext.Courses
                 .Include(d => d.Department)
@@ -64,7 +64,9 @@ namespace Employees.Data.Repository.Implementations
             {
                 _courseContext.Courses.Remove(result);
                 await _courseContext.SaveChangesAsync();
+                return result;
             }
+            return null;
         }
 
     }

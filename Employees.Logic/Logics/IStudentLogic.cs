@@ -8,40 +8,41 @@ using System.Threading.Tasks;
 
 namespace Employees.Logic.Logics
 {
-    public interface ICourseLogic
+    public interface IStudentLogic
     {
-        /// <summary>
-        /// Возвращает все курсы из БД
-        /// </summary>
-        /// <returns></returns>
-        Task<IEnumerable<CourseViewModel>> GetAllCourses();
 
         /// <summary>
-        /// Возвращает курс по id из БД
+        /// Возвращает всех студентов из БД
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<StudentViewModel>> GetAllStudents();
+
+        /// <summary>
+        /// Возвращает студента по id из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
-        Task<CourseViewModel> GetCourse(int courseId);
+        Task<StudentViewModel> GetStudent(int courseId);
 
         /// <summary>
-        /// Создание курса в БД
+        /// Создание студента в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        Task<CourseModel> AddCourse(CourseViewModel course);
+        Task<StudentModel> AddStudent(StudentViewModel student);
 
         /// <summary>
-        /// Обновление курса в БД
+        /// Обновление студента в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        Task<CourseModel> UpdateCourse(CourseViewModel course);
+        Task<StudentModel> UpdateStudent(StudentViewModel student);
 
         /// <summary>
-        /// Удаление курса из БД
+        /// Удаление студента из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
-        Task<CourseModel> DeleteCourse(int courseId);
+        Task<StudentModel> DeleteStudent(int studentId);
     }
 }

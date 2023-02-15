@@ -18,12 +18,6 @@ namespace Employees.Services.Models
    
         public int DepartmentID { get; set; }
 
-        public Department Department { get; set; }
-
-        public ICollection<Enrollment> Enrollments { get; set; }
-
-        public ICollection<CourseAssignment> CourseAssignments { get; set; }
-
         public static implicit operator CourseModel(CourseEntityModel model)
         {
             if (model == null)
@@ -37,10 +31,7 @@ namespace Employees.Services.Models
                 CourseID = model.CourseID,
                 Title = model.Title,
                 Credits = model.Credits,
-                DepartmentID = model.DepartmentID,
-                Department = model.Department,
-                Enrollments = model.Enrollments,
-                CourseAssignments = model.CourseAssignments
+                DepartmentID = model.DepartmentID
             };
         }
 
@@ -58,10 +49,7 @@ namespace Employees.Services.Models
                 CourseID = model.CourseID,
                 Title = model.Title,
                 Credits = model.Credits,
-                DepartmentID = model.DepartmentID,
-                Department = model.Department,
-                Enrollments = model.Enrollments,
-                CourseAssignments = model.CourseAssignments
+                DepartmentID = model.DepartmentID
 
             };
         }
@@ -79,10 +67,7 @@ namespace Employees.Services.Models
                 CourseID = model.CourseID,
                 Title = model.Title,
                 Credits = model.Credits,
-                DepartmentID = model.DepartmentID,
-                Department = model.Department,
-                Enrollments = model.Enrollments,
-                CourseAssignments = model.CourseAssignments
+                DepartmentID = model.DepartmentID
             };
         }
 
@@ -99,10 +84,7 @@ namespace Employees.Services.Models
                 CourseID = model.CourseID,
                 Title = model.Title,
                 Credits = model.Credits,
-                DepartmentID = model.DepartmentID,
-                Department = model.Department,
-                Enrollments = model.Enrollments,
-                CourseAssignments = model.CourseAssignments
+                DepartmentID = model.DepartmentID
             };
         }
 

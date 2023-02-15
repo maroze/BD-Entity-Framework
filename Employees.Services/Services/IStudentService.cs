@@ -14,33 +14,33 @@ namespace Employees.Services.Services
         /// Информация о всех студентах из БД
         /// </summary>
         /// <returns></returns>
-        IEnumerable<StudentModel> GetStudents();
+        Task<IEnumerable<StudentModel>> GetAll();
 
         /// <summary>
         /// Информация о студенте заданным id из БД
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        StudentModel GetStudent(int studentId);
+        Task<StudentModel> Get(int studentId);
 
         /// <summary>
         /// Создание студента в БД
         /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>
-        StudentModel AddStudent(StudentModel student);
+        Task<StudentModel> Add(StudentModel student);
 
         /// <summary>
         /// Обнавление инф-ции студента в БД
         /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>
-        Task<StudentModel> UpdateStudent(StudentModel student);
+        Task<StudentModel> Update(StudentModel student);
 
         /// <summary>
         /// Удаление студента из БД
         /// </summary>
         /// <param name="studentId"></param>
-        StudentModel DeleteStudent(int studentId);
+        Task<StudentModel> Delete(int studentId);
     }
 }

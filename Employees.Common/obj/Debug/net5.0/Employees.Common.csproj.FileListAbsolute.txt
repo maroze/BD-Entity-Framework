@@ -1,0 +1,12 @@
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\bin\Debug\net5.0\Employees.Common.deps.json
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\bin\Debug\net5.0\Employees.Common.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\bin\Debug\net5.0\ref\Employees.Common.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\bin\Debug\net5.0\Employees.Common.pdb
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.csproj.AssemblyReference.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.AssemblyInfoInputs.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.AssemblyInfo.cs
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\ref\Employees.Common.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Common\obj\Debug\net5.0\Employees.Common.pdb

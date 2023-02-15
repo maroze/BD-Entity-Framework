@@ -40,6 +40,6 @@ namespace Employees.Data.Repository
         /// Удаление курса
         /// </summary>
         /// <param name="courseId"></param>
-        void DeleteCourse(int courseId);
+        Task<CourseEntityModel> DeleteCourse(int courseId);
     }
 }
