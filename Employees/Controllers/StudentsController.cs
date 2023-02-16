@@ -15,11 +15,9 @@ namespace Employees.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentService _studentService;
-        private readonly IStudentLogic _studentLogic;
-        public StudentsController(IStudentService _studentService, IStudentLogic _studentLogic)
+        public StudentsController(IStudentService _studentService)
         {
             this._studentService = _studentService;
-            this._studentLogic = _studentLogic;
         }
 
         /// <summary>
@@ -33,7 +31,7 @@ namespace Employees.Controllers
         {
             try
             {
-                return Ok(_studentLogic.GetAllStudents());
+                return Ok(_studentService.GetAll());
             }
             catch (Exception e)
             {
@@ -54,7 +52,7 @@ namespace Employees.Controllers
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var createdStudent = _studentLogic.AddStudent(student);
+                var createdStudent = _studentService.Add(student);
 
                 return Created($"/api/course/{createdStudent}", createdStudent);
             }
@@ -77,7 +75,7 @@ namespace Employees.Controllers
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var updatedStudent = _studentLogic.UpdateStudent(student);
+                var updatedStudent = _studentService.Update(student);
 
                 return Ok(updatedStudent);
             }
@@ -98,7 +96,7 @@ namespace Employees.Controllers
         {
             try
             {
-                _studentLogic.DeleteStudent(studentId);
+                _studentService.Delete(studentId);
 
                 return NoContent();
             }

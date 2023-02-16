@@ -13,7 +13,7 @@ namespace Employees.Data.Repository
         /// Информация о всех курсах
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CourseEntityModel>> GetCourses();
+        IEnumerable<CourseEntityModel> GetCourses();
 
         /// <summary>
         /// Информация о курсе заданным id

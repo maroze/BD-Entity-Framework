@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Employees.Entities
 {
-    public class Instructor
+    public class InstructorEntityModel
     {
         public int ID { get; set; }
 
@@ -15,6 +15,7 @@ namespace Employees.Entities
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         [Display(Name = "Last Name")]
         [StringLength(50, MinimumLength = 2)]
+        //фамилия преподавателя
         public string LastName { get; set; }
 
         [Required]
@@ -22,11 +23,13 @@ namespace Employees.Entities
         [Column("FirstName")]
         [Display(Name = "First Name")]
         [StringLength(50)]
+        //имя-отчество преподавателя
         public string FirstMidName { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Hire Date")]
+        //дата приема на работу
         public DateTime HireDate { get; set; }
 
         [Display(Name = "Full Name")]
@@ -35,8 +38,8 @@ namespace Employees.Entities
             get { return LastName + ", " + FirstMidName; }
         }
 
-        public ICollection<CourseAssignment> CourseAssignments { get; set; }
-        public OfficeAssignment OfficeAssignment { get; set; }
+        public ICollection<CourseAssignmentEntityModel> CourseAssignments { get; set; }
+        public OfficeAssignmentEntityModel OfficeAssignment { get; set; }
     }
 }
 

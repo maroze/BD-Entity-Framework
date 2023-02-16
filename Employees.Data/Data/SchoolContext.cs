@@ -15,24 +15,24 @@ namespace Employees.Data
         }
 
         public DbSet<CourseEntityModel> Courses { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<EnrollmentEntityModel> Enrollments { get; set; }
         public DbSet<StudentEntityModel> Students { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Instructor> Instructors { get; set; }
-        public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
-        public DbSet<CourseAssignment> CourseAssignments { get; set; }
+        public DbSet<DepartmentEntityModel> Departments { get; set; }
+        public DbSet<InstructorEntityModel> Instructors { get; set; }
+        public DbSet<OfficeAssignmentEntityModel> OfficeAssignments { get; set; }
+        public DbSet<CourseAssignmentEntityModel> CourseAssignments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CourseEntityModel>().ToTable("Course");
-            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
+            modelBuilder.Entity<EnrollmentEntityModel>().ToTable("Enrollment");
             modelBuilder.Entity<StudentEntityModel>().ToTable("Student");
-            modelBuilder.Entity<Department>().ToTable("Department");
-            modelBuilder.Entity<Instructor>().ToTable("Instructor");
-            modelBuilder.Entity<OfficeAssignment>().ToTable("OfficeAssignment");
-            modelBuilder.Entity<CourseAssignment>().ToTable("CourseAssignment");
+            modelBuilder.Entity<DepartmentEntityModel>().ToTable("Department");
+            modelBuilder.Entity<InstructorEntityModel>().ToTable("Instructor");
+            modelBuilder.Entity<OfficeAssignmentEntityModel>().ToTable("OfficeAssignment");
+            modelBuilder.Entity<CourseAssignmentEntityModel>().ToTable("CourseAssignment");
 
-            modelBuilder.Entity<CourseAssignment>()
+            modelBuilder.Entity<CourseAssignmentEntityModel>()
                 .HasKey(c => new { c.CourseID, c.InstructorID });
 
         }

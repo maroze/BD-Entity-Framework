@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Employees.Data.Entities;
+using System;
 using System.Collections.Generic;
 
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Employees.Entities
         A, B, C, D, F
     }
 
-    public class Enrollment
+    public class EnrollmentEntityModel
     {
         public int EnrollmentID { get; set; }
 
@@ -37,6 +38,6 @@ namespace Employees.Entities
         /// Свойство навигации
         /// </summary>
         public CourseEntityModel Course { get; set; }
-        //public StudentEntityModel Student { get; set; }
+        public StudentEntityModel Student { get; set; }
     }
 }

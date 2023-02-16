@@ -7,30 +7,30 @@ using System.Threading.Tasks;
 
 namespace Employees.Entities
 {
-    public class Department
+    public class DepartmentEntityModel
     {
-       // [Column("departmentID")]
+       // id депортамента
         public int DepartmentID { get; set; }
 
-       // [Column("name")]
+       // название
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
 
 
         [DataType(DataType.Currency)]
-       // [Column ( "budget")]
+       // бюджет
         public decimal Budget { get; set; }
 
-        //[Column("startdate")]
+        //дата начала
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
 
-      //  [Column("instructorID")]
+      //  id преподавателя
         public int? InstructorID { get; set; }
 
-        public Instructor Administrator { get; set; }
+        public InstructorEntityModel Administrator { get; set; }
         public ICollection<CourseEntityModel> Courses { get; set; }
     }
 }

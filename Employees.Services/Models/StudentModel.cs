@@ -27,7 +27,7 @@ namespace Employees.Services.Models
             }
         }
 
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<EnrollmentEntityModel> Enrollments { get; set; }
 
         public static implicit operator StudentModel(StudentEntityModel model)
         {

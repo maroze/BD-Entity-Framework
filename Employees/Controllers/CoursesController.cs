@@ -17,12 +17,10 @@ namespace Employees.Controllers
     public class CoursesController : Controller
     {
         private readonly ICourseService _courseService;
-        private readonly ICourseLogic _courseLogic;
 
-        public CoursesController(ICourseService courseService, ICourseLogic courseLogic)
+        public CoursesController(ICourseService courseService)
         {
             _courseService = courseService;
-            _courseLogic = courseLogic;
         }
 
         [HttpGet("GetCourses")]
@@ -30,7 +28,7 @@ namespace Employees.Controllers
         {
             try
             {
-                return Ok(_courseLogic.GetAllCourses());
+                return Ok(_courseService.GetAll());
             }
             catch (Exception e)
             {
@@ -45,7 +43,7 @@ namespace Employees.Controllers
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var createdCourse = _courseLogic.AddCourse(course);
+                var createdCourse = _courseService.Add(course);
 
                 return Created($"/api/course/{createdCourse}", createdCourse);
             }
@@ -62,7 +60,7 @@ namespace Employees.Controllers
             {
                 if (!ModelState.IsValid) return BadRequest("Invalid request data");
 
-                var updatedCourse = _courseLogic.UpdateCourse(course);
+                var updatedCourse = _courseService.Update(course);
 
                 return Ok(updatedCourse);
             }
@@ -77,7 +75,7 @@ namespace Employees.Controllers
         {
             try
             {
-                _courseLogic.DeleteCourse(courseId);
+                _courseService.Delete(courseId);
 
                 return NoContent();
             }

@@ -44,6 +44,6 @@ namespace Employees.Data.Entities
         }
 
         //Общие сведения о обучении
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<EnrollmentEntityModel> Enrollments { get; set; }
     }
 }

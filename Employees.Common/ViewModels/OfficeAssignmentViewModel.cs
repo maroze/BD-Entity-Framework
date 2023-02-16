@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Employees.Common.ViewModels
 {
-    public class CourseAssignmentViewModel
+    public class OfficeAssignmentViewModel
     {
         public int InstructorID { get; set; }
-        public int CourseID { get; set; }
+        public string Location { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Employees.Services.Services
         /// Информация о всех студентах из БД
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<StudentModel>> GetAll();
+        IEnumerable<StudentModel> GetAll();
 
         /// <summary>
         /// Информация о студенте заданным id из БД

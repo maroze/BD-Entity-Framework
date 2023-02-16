@@ -16,11 +16,11 @@ namespace Employees.Services
             this._courseRepository = _courseRepository;
         }
 
-        public async Task<IEnumerable<CourseModel>> GetAll()
+        public IEnumerable<CourseModel> GetAll()
         {
            
             List<CourseModel> result = new List<CourseModel>();
-             var course_list = await _courseRepository.GetCourses();
+             var course_list = _courseRepository.GetCourses();
             foreach (var c in course_list)
             {
 

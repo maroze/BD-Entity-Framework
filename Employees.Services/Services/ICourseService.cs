@@ -14,7 +14,7 @@ namespace Employees.Services
         /// Возвращает все курсы из БД
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CourseModel>> GetAll();
+        IEnumerable<CourseModel> GetAll();
 
         /// <summary>
         /// Возвращает курс по id из БД

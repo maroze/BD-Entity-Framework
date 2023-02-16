@@ -26,13 +26,13 @@ namespace Employees.Entities
         //ВК кафедры
         public int DepartmentID { get; set; }
 
-        public Department Department { get; set; }
+        public DepartmentEntityModel Department { get; set; }
 
         //Оценки
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<EnrollmentEntityModel> Enrollments { get; set; }
 
         //Преподаватели
-        public ICollection<CourseAssignment> CourseAssignments { get; set; }
+        public ICollection<CourseAssignmentEntityModel> CourseAssignments { get; set; }
 
     }
 }

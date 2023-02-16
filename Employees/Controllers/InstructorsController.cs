@@ -40,7 +40,7 @@ namespace Employees.Controllers
             if (id != null)
             {
                 ViewData["InstructorID"] = id.Value;
-                Instructor instructor = viewModel.Instructors.Where(
+                InstructorEntityModel instructor = viewModel.Instructors.Where(
                     i => i.ID == id.Value).Single();
                 viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
@@ -76,8 +76,8 @@ namespace Employees.Controllers
         // GET: Instructors/Create
         public IActionResult Create()
         {
-            var instructor = new Instructor();
-            instructor.CourseAssignments = new List<CourseAssignment>();
+            var instructor = new InstructorEntityModel();
+            instructor.CourseAssignments = new List<CourseAssignmentEntityModel>();
             PopulateAssignedCourseData(instructor);
             return View();
         }
@@ -85,14 +85,14 @@ namespace Employees.Controllers
         // POST: Instructors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstMidName,HireDate,LastName,OfficeAssignment")] Instructor instructor, string[] selectedCourses)
+        public async Task<IActionResult> Create([Bind("FirstMidName,HireDate,LastName,OfficeAssignment")] InstructorEntityModel instructor, string[] selectedCourses)
         {
             if (selectedCourses != null)
             {
-                instructor.CourseAssignments = new List<CourseAssignment>();
+                instructor.CourseAssignments = new List<CourseAssignmentEntityModel>();
                 foreach (var course in selectedCourses)
                 {
-                    var courseToAdd = new CourseAssignment { InstructorID = instructor.ID, CourseID = int.Parse(course) };
+                    var courseToAdd = new CourseAssignmentEntityModel { InstructorID = instructor.ID, CourseID = int.Parse(course) };
                     instructor.CourseAssignments.Add(courseToAdd);
                 }
             }
@@ -127,7 +127,7 @@ namespace Employees.Controllers
             return View(instructor);
         }
 
-        private void PopulateAssignedCourseData(Instructor instructor)
+        private void PopulateAssignedCourseData(InstructorEntityModel instructor)
         {
             var allCourses = _context.Courses;
             var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.CourseID));
@@ -162,7 +162,7 @@ namespace Employees.Controllers
                     .ThenInclude(i => i.Course)
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (await TryUpdateModelAsync<Instructor>(
+            if (await TryUpdateModelAsync<InstructorEntityModel>(
                 instructorToUpdate,
                 "",
                 i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
@@ -193,11 +193,11 @@ namespace Employees.Controllers
         /// </summary>
         /// <param name="selectedCourses"></param>
         /// <param name="instructorToUpdate"></param>
-        private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
+        private void UpdateInstructorCourses(string[] selectedCourses, InstructorEntityModel instructorToUpdate)
         {
             if (selectedCourses == null)
             {
-                instructorToUpdate.CourseAssignments = new List<CourseAssignment>();
+                instructorToUpdate.CourseAssignments = new List<CourseAssignmentEntityModel>();
                 return;
             }
 
@@ -210,7 +210,7 @@ namespace Employees.Controllers
                 {
                     if (!instructorCourses.Contains(course.CourseID))
                     {
-                        instructorToUpdate.CourseAssignments.Add(new CourseAssignment { InstructorID = instructorToUpdate.ID, CourseID = course.CourseID });
+                        instructorToUpdate.CourseAssignments.Add(new CourseAssignmentEntityModel { InstructorID = instructorToUpdate.ID, CourseID = course.CourseID });
                     }
                 }
                 else
@@ -218,7 +218,7 @@ namespace Employees.Controllers
 
                     if (instructorCourses.Contains(course.CourseID))
                     {
-                        CourseAssignment courseToRemove = instructorToUpdate.CourseAssignments.FirstOrDefault(i => i.CourseID == course.CourseID);
+                        CourseAssignmentEntityModel courseToRemove = instructorToUpdate.CourseAssignments.FirstOrDefault(i => i.CourseID == course.CourseID);
                         _context.Remove(courseToRemove);
                     }
                 }
@@ -247,7 +247,7 @@ namespace Employees.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Instructor instructor = await _context.Instructors
+            InstructorEntityModel instructor = await _context.Instructors
                 .Include(i => i.CourseAssignments)
                 .SingleAsync(i => i.ID == id);
 

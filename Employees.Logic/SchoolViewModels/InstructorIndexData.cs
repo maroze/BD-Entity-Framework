@@ -7,9 +7,9 @@ namespace Employees.Entities.SchoolViewModels
 {
     public class InstructorIndexData
     {
-        public IEnumerable<Instructor> Instructors { get; set; }
+        public IEnumerable<InstructorEntityModel> Instructors { get; set; }
         public IEnumerable<CourseEntityModel> Courses { get; set; }
-        public IEnumerable<Enrollment> Enrollments { get; set; }
+        public IEnumerable<EnrollmentEntityModel> Enrollments { get; set; }
 
     }
 }

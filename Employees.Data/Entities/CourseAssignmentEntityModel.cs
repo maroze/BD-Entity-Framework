@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Employees.Entities
 {
-    public class CourseAssignment
+    public class CourseAssignmentEntityModel
     {
         public int InstructorID { get; set; }
         public int CourseID { get; set; }
-        public Instructor Instructor { get; set; }
+        public InstructorEntityModel Instructor { get; set; }
         public CourseEntityModel Course { get; set; }
     }
 }
