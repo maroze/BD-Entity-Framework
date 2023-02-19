@@ -16,29 +16,28 @@ namespace Employees.Services.Services.Implementations
             this._studentRepository = _studentRepository;
         }
 
-        public StudentModel Add(StudentModel student)
+        public async Task<StudentModel> Add(StudentModel student)
         {
-            var result = _studentRepository.AddStudent(student);
+            var result = await _studentRepository.AddStudent(student);
             return result;
         }
 
-        public StudentModel Delete(int studentId)
+        public async Task<StudentModel> Delete(int studentId)
         {
-            var result = _studentRepository.DeleteStudent(studentId);
+            var result = await _studentRepository.DeleteStudent(studentId);
             return result;
         }
 
-        public StudentModel Get(int studentId)
+        public async Task<StudentModel> Get(int studentId)
         {
-            object result = _studentRepository.GetStudent(studentId);
+            var result = await _studentRepository.GetStudent(studentId);
             return result;
         }
 
         public IEnumerable<StudentModel> GetAll()
         {
+            List<StudentModel> result = new List<StudentModel>();
             var student_list = _studentRepository.GetStudents();
-            IEnumerable<StudentModel> result = new IEnumerable<StudentModel>();
-
             foreach (var s in student_list)
             {
 
@@ -48,9 +47,9 @@ namespace Employees.Services.Services.Implementations
             return result;
         }
 
-        public Task<StudentModel> Update(StudentModel student)
+        public async Task<StudentModel> Update(StudentModel student)
         {
-            var result = _studentRepository.UpdateStudent(student);
+            var result = await _studentRepository.UpdateStudent(student);
             return result;
         }
     }

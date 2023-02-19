@@ -3,3 +3,15 @@ C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Ser
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.AssemblyInfoInputs.cache
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.AssemblyInfo.cs
 C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Services.deps.json
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Services.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\ref\Employees.Services.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Services.pdb
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Common.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Data.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Common.pdb
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\bin\Debug\net5.0\Employees.Data.pdb
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.csproj.CopyComplete
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\ref\Employees.Services.dll
+C:\Users\Пользователь\source\repos\BD-Entity-Framework\Employees.Services\obj\Debug\net5.0\Employees.Services.pdb

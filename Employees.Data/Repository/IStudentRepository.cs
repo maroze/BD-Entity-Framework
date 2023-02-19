@@ -13,7 +13,7 @@ namespace Employees.Data.Repository
         /// Информация о всех студентах
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<StudentEntityModel>> GetStudents();
+        IEnumerable<StudentEntityModel> GetStudents();
 
         /// <summary>
         /// Информация о студенте заданным id

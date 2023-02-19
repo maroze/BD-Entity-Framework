@@ -33,7 +33,10 @@
     ".NETCoreApp,Version=v5.0": {
       "Employees/1.0.0": {
         "dependencies": {
-          "Employees.Buissnes": "1.0.0",
+          "Employees.Common": "1.0.0",
+          "Employees.Data": "1.0.0",
+          "Employees.Logic": "1.0.0",
+          "Employees.Services": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.17",
@@ -1860,22 +1863,17 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "Employees.Buissnes/1.0.0": {
-        "dependencies": {
-          "Employees.Data": "1.0.0",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
-        },
+      "Employees.Common/1.0.0": {
         "runtime": {
-          "Employees.Buissnes.dll": {}
+          "Employees.Common.dll": {}
         },
         "compile": {
-          "Employees.Buissnes.dll": {}
+          "Employees.Common.dll": {}
         }
       },
       "Employees.Data/1.0.0": {
         "dependencies": {
+          "Employees.Common": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
@@ -1885,6 +1883,33 @@
         },
         "compile": {
           "Employees.Data.dll": {}
+        }
+      },
+      "Employees.Logic/1.0.0": {
+        "dependencies": {
+          "Employees.Common": "1.0.0",
+          "Employees.Services": "1.0.0",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
+        },
+        "runtime": {
+          "Employees.Logic.dll": {}
+        },
+        "compile": {
+          "Employees.Logic.dll": {}
+        }
+      },
+      "Employees.Services/1.0.0": {
+        "dependencies": {
+          "Employees.Common": "1.0.0",
+          "Employees.Data": "1.0.0"
+        },
+        "runtime": {
+          "Employees.Services.dll": {}
+        },
+        "compile": {
+          "Employees.Services.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4470,12 +4495,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "Employees.Buissnes/1.0.0": {
+    "Employees.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Employees.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Employees.Logic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Employees.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

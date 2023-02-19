@@ -7310,6 +7310,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Employees.Common >= 1.0.0",
+      "Employees.Data >= 1.0.0",
       "Employees.Logic >= 1.0.0",
       "Employees.Services >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.0",
@@ -7348,6 +7349,9 @@
           "projectReferences": {
             "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Common\\Employees.Common.csproj": {
               "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Common\\Employees.Common.csproj"
+            },
+            "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Data\\Employees.Data.csproj": {
+              "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Data\\Employees.Data.csproj"
             },
             "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Logic\\Employees.Logic.csproj": {
               "projectPath": "C:\\Users\\Пользователь\\source\\repos\\BD-Entity-Framework\\Employees.Logic\\Employees.Logic.csproj"

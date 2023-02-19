@@ -8,5 +8,7 @@ namespace Employees.Common.ViewModels
 {
     public class CourseAssignmentViewModel
     {
+        public int InstructorID { get; set; }
+        public int CourseID { get; set; }
     }
 }

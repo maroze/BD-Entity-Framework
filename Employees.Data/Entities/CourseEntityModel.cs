@@ -9,12 +9,13 @@ namespace Employees.Entities
 {
     public class CourseEntityModel
     {
-        //Id курса
+        //Id учебного модуля
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Number")]
         public int CourseID { get; set; }
 
-        //Название курса
+        //Название учебного модуля
         [StringLength(50, MinimumLength = 3)]
         public string Title { get; set; }
 
@@ -23,16 +24,16 @@ namespace Employees.Entities
         public int Credits { get; set; }
 
   //      [Column("departmentID")]
-        //ВК кафедры
+        //ВК дисциплины
         public int DepartmentID { get; set; }
 
-        public Department Department { get; set; }
+        public DepartmentEntityModel Department { get; set; }
 
         //Оценки
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<EnrollmentEntityModel> Enrollments { get; set; }
 
         //Преподаватели
-        public ICollection<CourseAssignment> CourseAssignments { get; set; }
+        public ICollection<CourseAssignmentEntityModel> CourseAssignments { get; set; }
 
     }
 }

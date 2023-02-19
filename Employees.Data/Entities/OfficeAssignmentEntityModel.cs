@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employees.Entities
 {
-    public class OfficeAssignment
+    public class OfficeAssignmentEntityModel
     {
         [Key]
         public int InstructorID { get; set; }
@@ -14,6 +14,6 @@ namespace Employees.Entities
         [Display(Name = "Office Location")]
         public string Location { get; set; }
 
-        public Instructor Instructor { get; set; }
+        public InstructorEntityModel Instructor { get; set; }
     }
 }

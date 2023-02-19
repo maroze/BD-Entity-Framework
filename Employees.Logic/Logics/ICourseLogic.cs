@@ -11,34 +11,34 @@ namespace Employees.Logic.Logics
     public interface ICourseLogic
     {
         /// <summary>
-        /// Возвращает все курсы из БД
+        /// Возвращает все модули из БД
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<CourseViewModel>> GetAllCourses();
+        IEnumerable<CourseViewModel> GetAllCourses();
 
         /// <summary>
-        /// Возвращает курс по id из БД
+        /// Возвращает модуль по id из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
         Task<CourseViewModel> GetCourse(int courseId);
 
         /// <summary>
-        /// Создание курса в БД
+        /// Создание модуля в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseModel> AddCourse(CourseViewModel course);
 
         /// <summary>
-        /// Обновление курса в БД
+        /// Обновление модуля в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseModel> UpdateCourse(CourseViewModel course);
 
         /// <summary>
-        /// Удаление курса из БД
+        /// Удаление модуля из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>

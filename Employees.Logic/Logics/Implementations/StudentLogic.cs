@@ -20,33 +20,33 @@ namespace Employees.Logic.Logics
             this._studentService = _studentService;
         }
 
-        public Task<StudentModel> AddStudent(StudentViewModel student)
+        public async Task<StudentModel> AddStudent(StudentViewModel student)
         {
             StudentModel model = student;
             return await _studentService.Add(model);
         }
 
-        public Task<StudentModel> DeleteStudent(int studentId)
+        public async Task<StudentModel> DeleteStudent(int studentId)
         {
             StudentModel model = await _studentService.Delete(studentId);
             return model;
         }
 
-        public Task<IEnumerable<StudentViewModel>> GetAllStudents()
+        public IEnumerable<StudentViewModel> GetAllStudents()
         {
-            var students = await _studentService.GetAll();
-            return students;
+            var students = _studentService.GetAll();
+            return (IEnumerable<StudentViewModel>)students;
         }
 
-        public Task<StudentViewModel> GetStudent(int courseId)
+        public async Task<StudentViewModel> GetStudent(int courseId)
         {
             StudentModel model = await _studentService.Get(courseId);
             return model;
         }
 
-        public Task<StudentModel> UpdateStudent(StudentViewModel student)
+        public async Task<StudentModel> UpdateStudent(StudentViewModel student)
         {
-            StudentModel model = await _studentService.UpdateStudent(student);
+            StudentModel model = await _studentService.Update(student);
             return model;
         }
     }

@@ -45,43 +45,43 @@ namespace Employees.Data
             }
             context.SaveChanges();
 
-            var instructors = new Instructor[]
+            var instructors = new InstructorEntityModel[]
             {
-                new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie",
+                new InstructorEntityModel { FirstMidName = "Kim",     LastName = "Abercrombie",
                     HireDate = DateTime.Parse("1995-03-11") },
-                new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",
+                new InstructorEntityModel { FirstMidName = "Fadi",    LastName = "Fakhouri",
                     HireDate = DateTime.Parse("2002-07-06") },
-                new Instructor { FirstMidName = "Roger",   LastName = "Harui",
+                new InstructorEntityModel { FirstMidName = "Roger",   LastName = "Harui",
                     HireDate = DateTime.Parse("1998-07-01") },
-                new Instructor { FirstMidName = "Candace", LastName = "Kapoor",
+                new InstructorEntityModel { FirstMidName = "Candace", LastName = "Kapoor",
                     HireDate = DateTime.Parse("2001-01-15") },
-                new Instructor { FirstMidName = "Roger",   LastName = "Zheng",
+                new InstructorEntityModel { FirstMidName = "Roger",   LastName = "Zheng",
                     HireDate = DateTime.Parse("2004-02-12") }
             };
 
-            foreach (Instructor i in instructors)
+            foreach (InstructorEntityModel i in instructors)
             {
                 context.Instructors.Add(i);
             }
             context.SaveChanges();
 
-            var departments = new Department[]
+            var departments = new DepartmentEntityModel[]
             {
-                new Department { Name = "English",     Budget = 350000,
+                new DepartmentEntityModel { Name = "English",     Budget = 350000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Abercrombie").ID },
-                new Department { Name = "Mathematics", Budget = 100000,
+                new DepartmentEntityModel { Name = "Mathematics", Budget = 100000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Fakhouri").ID },
-                new Department { Name = "Engineering", Budget = 350000,
+                new DepartmentEntityModel { Name = "Engineering", Budget = 350000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Harui").ID },
-                new Department { Name = "Economics",   Budget = 100000,
+                new DepartmentEntityModel { Name = "Economics",   Budget = 100000,
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Kapoor").ID }
             };
 
-            foreach (Department d in departments)
+            foreach (DepartmentEntityModel d in departments)
             {
                 context.Departments.Add(d);
             }
@@ -118,126 +118,126 @@ namespace Employees.Data
             }
             context.SaveChanges();
 
-            var officeAssignments = new OfficeAssignment[]
+            var officeAssignments = new OfficeAssignmentEntityModel[]
             {
-                new OfficeAssignment {
+                new OfficeAssignmentEntityModel {
                     InstructorID = instructors.Single( i => i.LastName == "Fakhouri").ID,
                     Location = "Smith 17" },
-                new OfficeAssignment {
+                new OfficeAssignmentEntityModel {
                     InstructorID = instructors.Single( i => i.LastName == "Harui").ID,
                     Location = "Gowan 27" },
-                new OfficeAssignment {
+                new OfficeAssignmentEntityModel {
                     InstructorID = instructors.Single( i => i.LastName == "Kapoor").ID,
                     Location = "Thompson 304" },
             };
 
-            foreach (OfficeAssignment o in officeAssignments)
+            foreach (OfficeAssignmentEntityModel o in officeAssignments)
             {
                 context.OfficeAssignments.Add(o);
             }
             context.SaveChanges();
 
-            var courseInstructors = new CourseAssignment[]
+            var courseInstructors = new CourseAssignmentEntityModel[]
             {
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Kapoor").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Harui").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Zheng").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Zheng").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Fakhouri").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Harui").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Abercrombie").ID
                     },
-                new CourseAssignment {
+                new CourseAssignmentEntityModel {
                     CourseID = courses.Single(c => c.Title == "Literature" ).CourseID,
                     InstructorID = instructors.Single(i => i.LastName == "Abercrombie").ID
                     },
             };
 
-            foreach (CourseAssignment ci in courseInstructors)
+            foreach (CourseAssignmentEntityModel ci in courseInstructors)
             {
                 context.CourseAssignments.Add(ci);
             }
             context.SaveChanges();
 
-            var enrollments = new Enrollment[]
+            var enrollments = new EnrollmentEntityModel[]
             {
-                new Enrollment {
+                new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Alexander").ID,
                     CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
                     Grade = Grade.A
                 },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Alexander").ID,
                     CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
                     Grade = Grade.C
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Alexander").ID,
                     CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                         StudentID = students.Single(s => s.LastName == "Alonso").ID,
                     CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                         StudentID = students.Single(s => s.LastName == "Alonso").ID,
                     CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Alonso").ID,
                     CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Anand").ID,
                     CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Anand").ID,
                     CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
                     Grade = Grade.B
                     },
-                new Enrollment {
+                new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Barzdukas").ID,
                     CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Li").ID,
                     CourseID = courses.Single(c => c.Title == "Composition").CourseID,
                     Grade = Grade.B
                     },
-                    new Enrollment {
+                    new EnrollmentEntityModel {
                     StudentID = students.Single(s => s.LastName == "Justice").ID,
                     CourseID = courses.Single(c => c.Title == "Literature").CourseID,
                     Grade = Grade.B
                     }
             };
 
-            foreach (Enrollment e in enrollments)
+            foreach (EnrollmentEntityModel e in enrollments)
             {
                 var enrollmentInDataBase = context.Enrollments.Where(
                     s =>

@@ -30,14 +30,15 @@ namespace Employees
         // Используйте этот метод для добавления сервисов 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Employees.Data")));
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddTransient<ICourseService, CourseService>();
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddTransient<IStudentService, StudentService>();
 
-            services.AddDbContext<SchoolContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            
             //предоставляет полезные сведения об ошибках в среде разработки
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();

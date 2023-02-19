@@ -8,62 +8,57 @@ using System.Threading.Tasks;
 
 namespace Employees.Data.Repository.Implementations
 {
-    public class CourseRepository : ICourseRepository
+    public class CourseRepository : BaseRepository<CourseEntityModel>, ICourseRepository
     {
-        private readonly SchoolContext _courseContext;
-
-        public CourseRepository(SchoolContext _courseContext)
+        public CourseRepository(SchoolContext _courseContext) : base(_courseContext)
         {
-            this._courseContext = _courseContext;
         }
 
         public async Task<CourseEntityModel> GetCourse(int courseId)
         {
-            return await _courseContext.Courses
-                .Include(d => d.Department)
+            var result = await GetQuery().Include(d => d.Department)
                   .FirstOrDefaultAsync(c => c.CourseID == courseId);
+
+
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new Exception("Модуль не найден");
+            }
+
         }
 
-        public async Task<IEnumerable<CourseEntityModel>> GetCourses()
+        public IEnumerable<CourseEntityModel> GetCourses()
         {
-            return await _courseContext.Courses.ToListAsync();
+            return GetAll().ToList();
         }
 
-        public async Task<CourseEntityModel> AddCourse(CourseEntityModel course)
+        public Task<CourseEntityModel> AddCourse(CourseEntityModel course)
         {
-            var result = await _courseContext.Courses.AddAsync(course);
-            await _courseContext.SaveChangesAsync();
-            return result.Entity;
+            Insert(course);
+
+            return Task.FromResult(course);
         }
 
         public async Task<CourseEntityModel> UpdateCourse(CourseEntityModel course)
         {
-            var result = await _courseContext.Courses
-                .FirstOrDefaultAsync(c => c.CourseID == course.CourseID);
+            await UpdateAsync(course);
 
-            if (result != null)
-            {
-                result.Title = course.Title;
-                result.Credits = course.Credits;
-                result.DepartmentID = course.DepartmentID;
-
-                await _courseContext.SaveChangesAsync();
-
-                return result;
-            }
-
-            return null;
+            return course;
         }
 
         public async Task<CourseEntityModel> DeleteCourse(int courseId)
         {
-            var result = await _courseContext.Courses
-                .Include(d => d.Department)
+            var result = await GetQuery()
                 .FirstOrDefaultAsync(c => c.CourseID == courseId);
+
             if (result != null)
             {
-                _courseContext.Courses.Remove(result);
-                await _courseContext.SaveChangesAsync();
+                Delete(result);
+
                 return result;
             }
             return null;

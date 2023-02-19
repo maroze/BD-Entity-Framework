@@ -11,6 +11,7 @@ namespace Employees.Data.Entities
     [Table("Student")]
     public class StudentEntityModel
     {
+        [Key]
         //ID студента
         public int ID { get; set; }
 
@@ -44,6 +45,6 @@ namespace Employees.Data.Entities
         }
 
         //Общие сведения о обучении
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<EnrollmentEntityModel> Enrollments { get; set; }
     }
 }
