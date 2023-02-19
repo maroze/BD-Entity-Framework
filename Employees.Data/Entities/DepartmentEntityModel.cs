@@ -9,16 +9,17 @@ namespace Employees.Entities
 {
     public class DepartmentEntityModel
     {
-       // id депортамента
+        [Key]
+        // id дисциплины
         public int DepartmentID { get; set; }
 
-       // название
+        // название дисциплины
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
 
 
         [DataType(DataType.Currency)]
-       // бюджет
+        // бюджет
         public decimal Budget { get; set; }
 
         //дата начала
@@ -27,7 +28,7 @@ namespace Employees.Entities
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
 
-      //  id преподавателя
+        //  id преподавателя
         public int? InstructorID { get; set; }
 
         public InstructorEntityModel Administrator { get; set; }

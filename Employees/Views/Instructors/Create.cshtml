@@ -1,4 +1,4 @@
-﻿@model Employees.Models.Instructor
+﻿@model Employees.Entities.InstructorEntityModel
 
 @{
     ViewData["Title"] = "Create";
@@ -38,7 +38,7 @@
                     <table>
                         <tr>
                             @{ int cnt = 0;
-                                List<Employees.Models.SchoolViewModels.AssignedCourseData> courses = ViewBag.Courses;
+                                List<Employees.Entities.SchoolViewModels.AssignedCourseData> courses = ViewBag.Courses;
 
                                 foreach (var course in courses)
                                 {

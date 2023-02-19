@@ -16,6 +16,7 @@ namespace Employees.Entities
 
     public class EnrollmentEntityModel
     {
+        [Key]
         public int EnrollmentID { get; set; }
 
         /// <summary>

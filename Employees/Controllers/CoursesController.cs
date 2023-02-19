@@ -18,7 +18,7 @@ namespace Employees.Controllers
     {
         private readonly ICourseService _courseService;
 
-        public CoursesController(ICourseService courseService)
+        public CoursesController(ICourseService courseService, SchoolContext context)
         {
             _courseService = courseService;
         }
@@ -87,7 +87,7 @@ namespace Employees.Controllers
         }
 
 
-        
+
         //// GET: Courses
         //public async Task<IActionResult> Index(
         //    string sortOrder,
@@ -139,25 +139,19 @@ namespace Employees.Controllers
 
         //}
 
-        //// GET: Courses/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var course = await _context.Courses
-        //        .Include(c => c.Department)
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(m => m.CourseID == id);
-        //    if (course == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(course);
-        //}
+        // GET: Courses/Details/5
+        [HttpGet, ActionName("Details")]
+        public IActionResult GetCourse(int id)
+        {
+            try
+            {
+                return Ok(_courseService.Get(id));
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+        }
 
         //// GET: Courses/Create
         //public IActionResult Create()

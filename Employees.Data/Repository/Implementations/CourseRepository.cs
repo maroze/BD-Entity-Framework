@@ -19,13 +19,14 @@ namespace Employees.Data.Repository.Implementations
             var result = await GetQuery().Include(d => d.Department)
                   .FirstOrDefaultAsync(c => c.CourseID == courseId);
 
+
             if (result != null)
             {
                 return result;
             }
             else
             {
-                throw new Exception("Книга не найдена");
+                throw new Exception("Модуль не найден");
             }
 
         }

@@ -26,7 +26,7 @@ namespace Employees.Controllers
         /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>
-        [HttpGet("GetStudents")]
+        [HttpGet("GetStudents"), ActionName("Index")]
         public IActionResult Get()
         {
             try

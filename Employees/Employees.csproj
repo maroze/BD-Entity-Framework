@@ -19,6 +19,7 @@
     <ProjectReference Include="..\Employees.Common\Employees.Common.csproj" />
     <ProjectReference Include="..\Employees.Logic\Employees.Logic.csproj" />
     <ProjectReference Include="..\Employees.Services\Employees.Services.csproj" />
+    <ProjectReference Include="..\Employees.Data\Employees.Data.csproj"/>
   </ItemGroup>
 
 </Project>

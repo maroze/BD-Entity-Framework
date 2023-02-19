@@ -10,34 +10,34 @@ namespace Employees.Data.Repository
     public interface ICourseRepository
     {
         /// <summary>
-        /// Информация о всех курсах
+        /// Информация о всех учебных модулях
         /// </summary>
         /// <returns></returns>
         IEnumerable<CourseEntityModel> GetCourses();
 
         /// <summary>
-        /// Информация о курсе заданным id
+        /// Информация об учебном модуле заданным id
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
         Task<CourseEntityModel> GetCourse(int courseId);
 
         /// <summary>
-        /// Создание курса
+        /// Создание учебного модуля
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseEntityModel> AddCourse(CourseEntityModel course);
 
         /// <summary>
-        /// Обнавление курса
+        /// Обновление учебного модуля
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseEntityModel> UpdateCourse(CourseEntityModel course);
 
         /// <summary>
-        /// Удаление курса
+        /// Удаление учебного модуля
         /// </summary>
         /// <param name="courseId"></param>
         Task<CourseEntityModel> DeleteCourse(int courseId);

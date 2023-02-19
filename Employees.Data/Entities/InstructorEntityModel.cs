@@ -9,6 +9,7 @@ namespace Employees.Entities
 {
     public class InstructorEntityModel
     {
+        [Key]
         public int ID { get; set; }
 
         [Required]

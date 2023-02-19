@@ -11,6 +11,7 @@ namespace Employees.Data.Entities
     [Table("Student")]
     public class StudentEntityModel
     {
+        [Key]
         //ID студента
         public int ID { get; set; }
 

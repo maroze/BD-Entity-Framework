@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Employees.Migrations
+namespace Employees.Data.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20230131145412_ComplexDataModel")]
-    partial class ComplexDataModel
+    [Migration("20230219224114_NewSolutions")]
+    partial class NewSolutions
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,47 @@ namespace Employees.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("Employees.Models.Course", b =>
+            modelBuilder.Entity("Employees.Data.Entities.StudentEntityModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("EnrollmentDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FirstMidName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("Employees.Entities.CourseAssignmentEntityModel", b =>
+                {
+                    b.Property<int>("CourseID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("InstructorID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CourseID", "InstructorID");
+
+                    b.HasIndex("InstructorID");
+
+                    b.ToTable("CourseAssignment");
+                });
+
+            modelBuilder.Entity("Employees.Entities.CourseEntityModel", b =>
                 {
                     b.Property<int>("CourseID")
                         .HasColumnType("integer");
@@ -43,30 +83,18 @@ namespace Employees.Migrations
                     b.ToTable("Course");
                 });
 
-            modelBuilder.Entity("Employees.Models.CourseAssignment", b =>
-                {
-                    b.Property<int>("CourseID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("InstructorID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CourseID", "InstructorID");
-
-                    b.HasIndex("InstructorID");
-
-                    b.ToTable("CourseAssignment");
-                });
-
-            modelBuilder.Entity("Employees.Models.Department", b =>
+            modelBuilder.Entity("Employees.Entities.DepartmentEntityModel", b =>
                 {
                     b.Property<int>("DepartmentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("AdministratorID")
+                        .HasColumnType("integer");
+
                     b.Property<decimal>("Budget")
-                        .HasColumnType("money");
+                        .HasColumnType("numeric");
 
                     b.Property<int?>("InstructorID")
                         .HasColumnType("integer");
@@ -80,12 +108,12 @@ namespace Employees.Migrations
 
                     b.HasKey("DepartmentID");
 
-                    b.HasIndex("InstructorID");
+                    b.HasIndex("AdministratorID");
 
                     b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("Employees.Models.Enrollment", b =>
+            modelBuilder.Entity("Employees.Entities.EnrollmentEntityModel", b =>
                 {
                     b.Property<int>("EnrollmentID")
                         .ValueGeneratedOnAdd()
@@ -110,7 +138,7 @@ namespace Employees.Migrations
                     b.ToTable("Enrollment");
                 });
 
-            modelBuilder.Entity("Employees.Models.Instructor", b =>
+            modelBuilder.Entity("Employees.Entities.InstructorEntityModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -136,7 +164,7 @@ namespace Employees.Migrations
                     b.ToTable("Instructor");
                 });
 
-            modelBuilder.Entity("Employees.Models.OfficeAssignment", b =>
+            modelBuilder.Entity("Employees.Entities.OfficeAssignmentEntityModel", b =>
                 {
                     b.Property<int>("InstructorID")
                         .HasColumnType("integer");
@@ -150,51 +178,15 @@ namespace Employees.Migrations
                     b.ToTable("OfficeAssignment");
                 });
 
-            modelBuilder.Entity("Employees.Models.Student", b =>
+            modelBuilder.Entity("Employees.Entities.CourseAssignmentEntityModel", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("EnrollmentDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("FirstMidName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Student");
-                });
-
-            modelBuilder.Entity("Employees.Models.Course", b =>
-                {
-                    b.HasOne("Employees.Models.Department", "Department")
-                        .WithMany("Courses")
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("Employees.Models.CourseAssignment", b =>
-                {
-                    b.HasOne("Employees.Models.Course", "Course")
+                    b.HasOne("Employees.Entities.CourseEntityModel", "Course")
                         .WithMany("CourseAssignments")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Employees.Models.Instructor", "Instructor")
+                    b.HasOne("Employees.Entities.InstructorEntityModel", "Instructor")
                         .WithMany("CourseAssignments")
                         .HasForeignKey("InstructorID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -205,24 +197,35 @@ namespace Employees.Migrations
                     b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("Employees.Models.Department", b =>
+            modelBuilder.Entity("Employees.Entities.CourseEntityModel", b =>
                 {
-                    b.HasOne("Employees.Models.Instructor", "Administrator")
+                    b.HasOne("Employees.Entities.DepartmentEntityModel", "Department")
+                        .WithMany("Courses")
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Employees.Entities.DepartmentEntityModel", b =>
+                {
+                    b.HasOne("Employees.Entities.InstructorEntityModel", "Administrator")
                         .WithMany()
-                        .HasForeignKey("InstructorID");
+                        .HasForeignKey("AdministratorID");
 
                     b.Navigation("Administrator");
                 });
 
-            modelBuilder.Entity("Employees.Models.Enrollment", b =>
+            modelBuilder.Entity("Employees.Entities.EnrollmentEntityModel", b =>
                 {
-                    b.HasOne("Employees.Models.Course", "Course")
+                    b.HasOne("Employees.Entities.CourseEntityModel", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Employees.Models.Student", "Student")
+                    b.HasOne("Employees.Data.Entities.StudentEntityModel", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -233,39 +236,39 @@ namespace Employees.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Employees.Models.OfficeAssignment", b =>
+            modelBuilder.Entity("Employees.Entities.OfficeAssignmentEntityModel", b =>
                 {
-                    b.HasOne("Employees.Models.Instructor", "Instructor")
+                    b.HasOne("Employees.Entities.InstructorEntityModel", "Instructor")
                         .WithOne("OfficeAssignment")
-                        .HasForeignKey("Employees.Models.OfficeAssignment", "InstructorID")
+                        .HasForeignKey("Employees.Entities.OfficeAssignmentEntityModel", "InstructorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("Employees.Models.Course", b =>
+            modelBuilder.Entity("Employees.Data.Entities.StudentEntityModel", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("Employees.Entities.CourseEntityModel", b =>
                 {
                     b.Navigation("CourseAssignments");
 
                     b.Navigation("Enrollments");
                 });
 
-            modelBuilder.Entity("Employees.Models.Department", b =>
+            modelBuilder.Entity("Employees.Entities.DepartmentEntityModel", b =>
                 {
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Employees.Models.Instructor", b =>
+            modelBuilder.Entity("Employees.Entities.InstructorEntityModel", b =>
                 {
                     b.Navigation("CourseAssignments");
 
                     b.Navigation("OfficeAssignment");
-                });
-
-            modelBuilder.Entity("Employees.Models.Student", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

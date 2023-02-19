@@ -11,34 +11,34 @@ namespace Employees.Services
     public interface ICourseService
     {
         /// <summary>
-        /// Возвращает все курсы из БД
+        /// Возвращает все уч модули из БД
         /// </summary>
         /// <returns></returns>
         IEnumerable<CourseModel> GetAll();
 
         /// <summary>
-        /// Возвращает курс по id из БД
+        /// Возвращает уч модуль по id из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>
         Task<CourseModel> Get(int courseId);
 
         /// <summary>
-        /// Создание курса в БД
+        /// Создание уч модуля в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseModel> Add(CourseModel course);
 
         /// <summary>
-        /// Обновление курса в БД
+        /// Обновление уч модуля в БД
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
         Task<CourseModel> Update(CourseModel course);
 
         /// <summary>
-        /// Удаление курса из БД
+        /// Удаление уч модуля из БД
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns></returns>

@@ -15,7 +15,7 @@ namespace Employees.Logic.Logics
         /// Возвращает всех студентов из БД
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<StudentViewModel>> GetAllStudents();
+       IEnumerable<StudentViewModel> GetAllStudents();
 
         /// <summary>
         /// Возвращает студента по id из БД

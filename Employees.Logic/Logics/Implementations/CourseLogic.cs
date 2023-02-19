@@ -30,9 +30,9 @@ namespace Employees.Logic.Logics.Implementations
             return model;
         }
 
-        public async Task<IEnumerable<CourseViewModel>> GetAllCourses()
+        public IEnumerable<CourseViewModel> GetAllCourses()
         { 
-            var courses = await _courseService.GetAll();
+            var courses =  _courseService.GetAll();
             return (IEnumerable<CourseViewModel>)courses;
         }
 
