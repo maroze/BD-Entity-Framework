@@ -38,9 +38,9 @@ namespace Employees.Logic.Logics
             return (IEnumerable<StudentViewModel>)students;
         }
 
-        public async Task<StudentViewModel> GetStudent(int courseId)
+        public async Task<StudentViewModel> GetStudent(int studentId)
         {
-            StudentModel model = await _studentService.Get(courseId);
+            StudentModel model = await _studentService.Get(studentId);
             return model;
         }
 

@@ -32,13 +32,16 @@ namespace Employees
         {
             services.AddDbContext<SchoolContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Employees.Data")));
+            
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddTransient<ICourseService, CourseService>();
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddTransient<IStudentService, StudentService>();
 
-            
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
+
             //предоставляет полезные сведения об ошибках в среде разработки
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();

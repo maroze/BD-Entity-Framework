@@ -1,4 +1,5 @@
 ﻿using Employees.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,27 +16,45 @@ namespace Employees.Data.Repository.Implementations
 
         public Task<DepartmentEntityModel> AddDepartment(DepartmentEntityModel department)
         {
-            throw new NotImplementedException();
+            Insert(department);
+
+            return Task.FromResult(department);
         }
 
-        public Task<DepartmentEntityModel> DeleteDepartment(int departmentId)
+        public async Task<DepartmentEntityModel> DeleteDepartment(int departmentId)
         {
-            throw new NotImplementedException();
+            var result = await GetQuery().FirstOrDefaultAsync(d => d.DepartmentID == departmentId);
+            if (result != null)
+            {
+                Delete(result);
+
+                return result;
+            }
+            return null;
         }
 
-        public Task<DepartmentEntityModel> GetDepartment(int departmentId)
+        public async Task<DepartmentEntityModel> GetDepartment(int departmentId)
         {
-            throw new NotImplementedException();
+            var result = await GetQuery().Include(a => a.Administrator).FirstOrDefaultAsync(d => d.DepartmentID ==departmentId);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new Exception("Кафедра не найдена");
+            }
         }
 
         public IEnumerable<DepartmentEntityModel> GetDepartments()
         {
-            throw new NotImplementedException();
+            return GetAll().ToList();
         }
 
-        public Task<DepartmentEntityModel> UpdateDepartment(DepartmentEntityModel department)
+        public async Task<DepartmentEntityModel> UpdateDepartment(DepartmentEntityModel department)
         {
-            throw new NotImplementedException();
+            await UpdateAsync(department);
+            return department;
         }
     }
 }
