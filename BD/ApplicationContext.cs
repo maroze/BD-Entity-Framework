@@ -7,11 +7,12 @@ namespace BD
 {
     public class ApplicationContext : DbContext
     {
+
         public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=userdb;Username=postgres;Password=123456789");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=hellappdb;Trusted_Connection=True;");
         }
 
         public void Add_product(string type, double cost)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,20 +42,18 @@ namespace BD
         /// </summary>
         public void Report_database()
         {
-            List<string> people = new List<string>();
-
             using (ApplicationContext db = new ApplicationContext())
             {
-                var products = db.Products.ToList();
-
-                foreach (Product p in products)
+                List<string> result = new List<string>();
+                var product_list = db.Products.ToList();
+                foreach (var p in product_list)
                 {
-                    people.Add($"{p.Id}: {p.Type} - {p.Cost} руб ");
+                    result.Add($"{p.Id}: {p.Type} - {p.Cost} руб ");
                 }
 
-                for (int i = 0; i < people.Count; i++)
+                for (int i = 0; i < result.Count; i++)
                 {
-                    Report.Text += $"{people[i]}\n";
+                    Report.Text += $"{result[i]}\n";
                 }
             }
         }
